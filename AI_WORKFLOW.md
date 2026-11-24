@@ -17,10 +17,9 @@
 
 | What happened | Change |
 | --- | --- |
-| The installed packages were newer major versions than the model's defaults (TypeScript 7, react-router 8, marked 18, TipTap 3). | We checked the real exports and signatures first (e.g. TipTap v3 `setContent(content, { emitUpdate })`) instead of coding against remembered APIs. |
+| The installed packages were newer major versions than the model's defaults (TypeScript 7, react-router 8, marked 18, TipTap 3). | The agent checked the real exports and signatures first (e.g. TipTap v3 `setContent(content, { emitUpdate })`) instead of coding against remembered APIs. |
 | The first `useAutosave` returned a new object on every render. Effects depending on it would have reset the polling interval and the ⌘S listener on each render. | The hook now returns memoized, stable actions, and effects depend on those. |
 | The editor's `onUpdate` closure referenced the autosave hook, which is declared after `useEditor`. | Routed through a ref, so it never captures a stale or uninitialized value. |
-| A default choice of `better-sqlite3` plus Vitest. | Rejected in favor of built-in `node:sqlite` and `node --test`. No native compilation (this matters in slim Docker images), and no bundler between tests and a `node:`-only builtin. |
 | The `.docx` test fixture was generated with macOS `textutil`, which doesn't emit real Word heading or list styles. | The test asserts only what the fixture can prove (bold and italic survive), not headings. |
 | Screenshot review showed document-list previews repeating the title when the body starts with the same heading. | The snippet now skips a leading line that matches the title. |
 | The first production build shipped a single 712 KB JS bundle. | The editor route is lazy-loaded, cutting the initial load to about 89 KB gzipped. |
@@ -33,8 +32,8 @@
 - **Automated:** 14 API integration tests over real HTTP (`npm test`) and strict TypeScript for server and web (`npm run typecheck`). Both run inside the Docker build, so a red test can't ship.
 - **Security-relevant behavior was tested, not assumed:** 404 vs 403 semantics, owner-only sharing, viewer write attempts, and XSS payloads (`<script>`, `onerror`, `javascript:` URLs) stripped on save.
 - **Browser E2E (headless Chrome):** create → format → rename → reload (formatting preserved) → share as viewer → Bob sees "Shared with me" and a read-only editor → upgrade to editor → Bob's edit appears for Alice via refresh → offline edit → 409 conflict banner → overwrite → Carol is denied → `.md` import → `.pdf` rejected with a clear message. The run had no uncaught page errors. The only console errors were expected HTTP statuses (401 before sign-in, 404, 409, 415, offline).
-- **Visual review:** each screenshot was inspected for layout, hierarchy, and copy. The duplicated-snippet issue above was found this way.
+- **Visual review:** the agent inspected a selection of the screenshots for layout, hierarchy, and copy. The duplicated-snippet issue above was found this way.
 
 ## Personal review
 
-[Add 2–3 sentences in your own words: what you reviewed line by line, what you would have done differently, and any AI suggestion you overruled.]
+I worked with Claude Code by delegation: I gave it the assignment brief, and it chose the design and wrote the code, tests and documentation, including the draft of this note. My part in that session was handling deployment decisions: I approved publishing the source to a public GitHub repo and deployed the app on Render after the first hosting option turned out to need a paid plan. The verification described above was run by the agent, and this section does not claim a line-by-line code review by me.
