@@ -84,8 +84,9 @@ The image runs typecheck and tests during the build, so a failing test fails the
 
 The app is one stateless Node process plus a SQLite file, packaged as a Docker image, so any Docker host works. The demo runs on **Render's free tier** using the included Blueprint (`render.yaml`):
 
-1. Push this repo to GitHub.
-2. In Render: **New → Blueprint**, pick the repo, then **Apply**. Render builds the Dockerfile (which runs typecheck and tests) and serves it over HTTPS.
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/JoelJohnsonThomas/folio-docs)
+
+Or by hand: in Render, **New → Blueprint**, pick the repo, then **Apply**. Render builds the Dockerfile (which runs typecheck and tests) and serves it over HTTPS.
 
 > **Free-tier caveats:** the service sleeps after about 15 minutes idle, so **the first request can take up to a minute**. There's also no persistent disk, so the demo database resets and re-seeds on each restart or redeploy. Within a session, everything persists normally. For production, mount a disk at `/data` or move to Postgres (see the architecture note).
 
