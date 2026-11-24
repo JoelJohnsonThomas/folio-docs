@@ -1,6 +1,6 @@
 # Submission: Folio collaborative document editor
 
-**Live product:** `<DEPLOYMENT_URL>` (hosted on Render's free tier, so the first load can take up to a minute while the service wakes up)
+**Live product:** **https://folio-docs-1lau.onrender.com** (hosted on Render's free tier, so the first load can take up to a minute while the service wakes up)
 **Walkthrough video:** see `VIDEO_URL.txt`
 
 ## Test accounts (no password, pick one on the sign-in screen)

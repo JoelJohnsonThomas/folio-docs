@@ -2,7 +2,7 @@
 
 Folio is a small full-stack document editor. You can create and format documents in the browser, import files, share documents with other users as viewers or editors, and have everything persist across sessions.
 
-**Live demo:** `<DEPLOYMENT_URL>` (free tier: the first load after a while may take about a minute to wake up). Pick a demo account on the sign-in screen. No password is needed.
+**Live demo:** **https://folio-docs-1lau.onrender.com** (free tier: the first load after a while may take about a minute to wake up). Pick a demo account on the sign-in screen. No password is needed.
 
 | Demo account | Email | Seeded state |
 | --- | --- | --- |
